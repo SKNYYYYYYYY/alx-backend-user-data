@@ -6,7 +6,7 @@ import re
 from typing import List
 
 
-def filter_datum(fields: List[str],redaction: str, message: str,separator: str) -> str:
+def filter_datum(fields,redaction, message,separator) -> str:
     """Returns the log message with specified fields obfuscated using regex."""
     return re.sub(rf'({"|".join(fields)})=.*?{separator}',
                   lambda m: f"{m.group(1)}={redaction}{separator}", message)
