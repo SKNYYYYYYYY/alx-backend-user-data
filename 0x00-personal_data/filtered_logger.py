@@ -3,7 +3,7 @@
 import re
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields, redaction, message, separator) -> str:
     """use regex to mask specified field's value"""
     pattern = r'(' + '|'.join(re.escape(field)
                               for field in fields) + r')=([^;]+)'
