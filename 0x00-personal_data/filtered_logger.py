@@ -67,7 +67,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     return conn
 
 
-def main():
+def main() -> None:
     """returns nothing"""
     conn = get_db()
     cur = conn.cursor()
