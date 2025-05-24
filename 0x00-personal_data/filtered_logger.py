@@ -22,7 +22,7 @@ class RedactingFormatter(logging.Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)s: %(message)s"
     SEPARATOR = ";"
 
-    def __init__(self, fields: List[str]):
+    def __init__(self, fields: List[str]) -> None:
         """Constructor"""
         self.fields = fields
         super().__init__(self.FORMAT)
