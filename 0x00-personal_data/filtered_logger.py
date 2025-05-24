@@ -5,6 +5,8 @@ Contains filter_datum function to obfuscate specified fields in a log message.
 import re
 from typing import List
 import logging
+import os
+import mysql.connector
 
 
 def filter_datum(fields: List[str], redaction: str,
@@ -48,3 +50,15 @@ def get_logger() -> logging.Logger:
     console.setFormatter(formatter)
     logger.addHandler(console)
     return logger
+
+
+def get_db():
+    """return db connector"""
+    username = os.getenv("PERSONAL_DATA_DB_USERNAME", default="root")
+    host = os.getenv("PERSONAL_DATA_DB_HOST ", default="localhost")
+    password = os.getenv("PERSONAL_DATA_DB_PASSWORD ", default="")
+    conn = mysql.connector.connect(
+        host=host,
+        username=username,
+        password=password)
+    return conn
