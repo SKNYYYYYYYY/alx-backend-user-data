@@ -3,7 +3,7 @@
 Contains filter_datum function to obfuscate specified fields in a log message.
 """
 import re
-from typing import List
+from typing import List, cast
 import logging
 import os
 import mysql.connector
@@ -47,7 +47,7 @@ def get_logger() -> logging.Logger:
     logger.setLevel(logging.INFO)
     logger.propagate = False
     console = logging.StreamHandler()
-    formatter = RedactingFormatter(fields=PII_FIELDS)
+    formatter = RedactingFormatter(fields=list(PII_FIELDS))
     console.setFormatter(formatter)
     logger.addHandler(console)
     return logger
@@ -65,7 +65,7 @@ def get_db() -> MySQLConnection:
         password=password,
         database=db_name
     )
-    return conn
+    return cast(MySQLConnection, conn)
 
 
 def main() -> None:
