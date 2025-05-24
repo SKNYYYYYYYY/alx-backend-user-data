@@ -37,18 +37,20 @@ class RedactingFormatter(logging.Formatter):
             self.SEPARATOR)
         return super().format(record)
 
-# PII_FIELDS = ("email", "name", "ssn", "password", "phone",)
 
-# def get_logger() -> logging.Logger:
-#     """get logger"""
-#     logger = logging.getLogger("user_data")
-#     logger.setLevel(logging.INFO)
-#     logger.propagate = False
-#     console = logging.StreamHandler()
-#     formatter = RedactingFormatter(fields=list(PII_FIELDS))
-#     console.setFormatter(formatter)
-#     logger.addHandler(console)
-#     return logger
+PII_FIELDS = ("email", "name", "ssn", "password", "phone",)
+
+
+def get_logger() -> logging.Logger:
+    """get logger"""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+    console = logging.StreamHandler()
+    formatter = RedactingFormatter(fields=list(PII_FIELDS))
+    console.setFormatter(formatter)
+    logger.addHandler(console)
+    return logger
 
 
 # def get_db() -> MySQLConnection:
