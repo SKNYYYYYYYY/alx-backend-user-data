@@ -38,47 +38,47 @@ class RedactingFormatter(logging.Formatter):
         return super().format(record)
 
 
-PII_FIELDS = ("email", "name", "ssn", "password", "phone",)
+# PII_FIELDS = ("email", "name", "ssn", "password", "phone",)
 
 
-def get_logger() -> logging.Logger:
-    """get logger"""
-    logger = logging.getLogger("user_data")
-    logger.setLevel(logging.INFO)
-    logger.propagate = False
-    console = logging.StreamHandler()
-    formatter = RedactingFormatter(fields=list(PII_FIELDS))
-    console.setFormatter(formatter)
-    logger.addHandler(console)
-    return logger
+# def get_logger() -> logging.Logger:
+#     """get logger"""
+#     logger = logging.getLogger("user_data")
+#     logger.setLevel(logging.INFO)
+#     logger.propagate = False
+#     console = logging.StreamHandler()
+#     formatter = RedactingFormatter(fields=list(PII_FIELDS))
+#     console.setFormatter(formatter)
+#     logger.addHandler(console)
+#     return logger
 
 
-def get_db() -> MySQLConnection:
-    """return db connector"""
-    username = os.getenv("PERSONAL_DATA_DB_USERNAME", default="root")
-    host = os.getenv("PERSONAL_DATA_DB_HOST", default="localhost")
-    password = os.getenv("PERSONAL_DATA_DB_PASSWORD", default="")
-    db_name = os.getenv("PERSONAL_DATA_DB_NAME")
-    conn = mysql.connector.connect(
-        host=host,
-        user=username,
-        password=password,
-        database=db_name
-    )
-    return cast(MySQLConnection, conn)
+# def get_db() -> MySQLConnection:
+#     """return db connector"""
+#     username = os.getenv("PERSONAL_DATA_DB_USERNAME", default="root")
+#     host = os.getenv("PERSONAL_DATA_DB_HOST", default="localhost")
+#     password = os.getenv("PERSONAL_DATA_DB_PASSWORD", default="")
+#     db_name = os.getenv("PERSONAL_DATA_DB_NAME")
+#     conn = mysql.connector.connect(
+#         host=host,
+#         user=username,
+#         password=password,
+#         database=db_name
+#     )
+#     return cast(MySQLConnection, conn)
 
 
-def main() -> None:
-    """returns nothing"""
-    conn = get_db()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM pii_users")
-    rows = cur.fetchall()
-    logger = get_logger()
-    for name, email, phone, ssn, password, ip, last_login, user_agent in rows:
-        logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn}; password={
-                    password}; ip={ip};last_login={last_login}; user_agent={user_agent};")
+# def main() -> None:
+#     """returns nothing"""
+#     conn = get_db()
+#     cur = conn.cursor()
+#     cur.execute("SELECT * FROM pii_users")
+#     rows = cur.fetchall()
+#     logger = get_logger()
+#     for name, email, phone, ssn, password, ip, last_login, user_agent in rows:
+#         logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn}; password={
+#                     password}; ip={ip};last_login={last_login}; user_agent={user_agent};")
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
