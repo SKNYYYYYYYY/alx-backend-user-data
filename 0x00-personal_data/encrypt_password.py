@@ -3,7 +3,7 @@
 import bcrypt
 
 
-def hash_password(password) -> bytes:
+def hash_password(password: str) -> bytes:
     """Hash a password for the first time, with a randomly-generated salt"""
     hashed = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt())
     return hashed
