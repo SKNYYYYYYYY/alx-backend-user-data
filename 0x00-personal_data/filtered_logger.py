@@ -73,9 +73,10 @@ class RedactingFormatter(logging.Formatter):
 #     cur.execute("SELECT * FROM pii_users")
 #     rows = cur.fetchall()
 #     logger = get_logger()
-#     for name, email, phone, ssn, password, ip, last_login, user_agent in rows:
-#         logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn}; password={
-# password}; ip={ip};last_login={last_login}; user_agent={user_agent};")
+#     for name, email, phone, ssn, password, ip, last_login,user_agent in rows:
+#         logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn};\
+#         password={password}; ip={ip};last_login={last_login};\
+#         user_agent={user_agent};")
 
 
 # if __name__ == '__main__':
