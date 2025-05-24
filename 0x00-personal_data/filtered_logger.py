@@ -68,18 +68,18 @@ def get_db() -> MySQLConnection:
     return cast(MySQLConnection, conn)
 
 
-# def main() -> None:
-#     """returns nothing"""
-#     conn = get_db()
-#     cur = conn.cursor()
-#     cur.execute("SELECT * FROM pii_users")
-#     rows = cur.fetchall()
-#     logger = get_logger()
-#     for name, email, phone, ssn, password, ip, last_login,user_agent in rows:
-#         logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn};\
-#         password={password}; ip={ip};last_login={last_login};\
-#         user_agent={user_agent};")
+def main() -> None:
+    """returns nothing"""
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM pii_users")
+    rows = cur.fetchall()
+    logger = get_logger()
+    for name, email, phone, ssn, password, ip, last_login, user_agent in rows:
+        logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn};\
+        password={password}; ip={ip};last_login={last_login};\
+        user_agent={user_agent};")
 
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
