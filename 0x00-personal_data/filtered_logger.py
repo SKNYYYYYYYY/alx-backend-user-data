@@ -12,7 +12,7 @@ from mysql.connector.connection import MySQLConnection
 
 def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
-    """Returns the log message with specified fields obfuscated using regex."""
+    """Returns the log message with obfuscated pii."""
     return re.sub(rf'({"|".join(fields)})=.*?{separator}',
                   lambda m: f"{m.group(1)}={redaction}{separator}", message)
 
