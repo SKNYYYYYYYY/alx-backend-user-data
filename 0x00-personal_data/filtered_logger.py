@@ -19,7 +19,7 @@ def filter_datum(fields: List[str], redaction: str,
 class RedactingFormatter(logging.Formatter):
     """custom formater"""
     REDACTION = "***"
-    FORMAT = "[HOLBERTON] %(levelname)s %(asctime)s: %(message)s"
+    FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)s: %(message)s"
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
@@ -65,3 +65,19 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=db_name
     )
     return conn
+
+
+def main():
+    """returns nothing"""
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM pii_users")
+    rows = cur.fetchall()
+    logger = get_logger()
+    for name, email, phone, ssn, password, ip, last_login, user_agent in rows:
+        logger.info(f"name={name}; email={email}; phone={phone}; ssn={ssn}; password={
+                    password}; ip={ip};last_login={last_login}; user_agent={user_agent};")
+
+
+if __name__ == '__main__':
+    main()
