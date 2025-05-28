@@ -27,21 +27,25 @@ def before_request():
     """handle filtering requests based on auth"""
     if auth is None:
         return
-    excluded_paths =  ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+    excluded_paths = [
+        '/api/v1/status/',
+        '/api/v1/unauthorized/',
+        '/api/v1/forbidden/']
     is_included = auth.require_auth(request.path, excluded_paths)
-    if is_included == False:
+    if not is_included:
         return
-    if auth.authorization_header(request) == None:
+    if auth.authorization_header(request) is None:
         abort(401)
-    if  auth.current_user(request) == None:
+    if auth.current_user(request) is None:
         abort(403)
-        
-    
+
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
     """
     return jsonify({"error": "Not found"}), 404
+
 
 @app.errorhandler(401)
 def unnauthorized(error) -> str:
@@ -49,11 +53,13 @@ def unnauthorized(error) -> str:
     """
     return jsonify({"error": "Unauthorized"}), 401
 
+
 @app.errorhandler(403)
 def unnauthorized(error) -> str:
     """Forbidden handler
     """
     return jsonify({"error": "Forbidden"}), 403
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
