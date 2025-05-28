@@ -7,21 +7,22 @@ from flask import request
 
 
 class Auth():
-	"""class to manage API authentication"""
-	def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-		"""return False"""
-		if path is None or excluded_paths is None or len(excluded_paths) == 0:
-			return True
-		path = path.rstrip('/') + '/'
-		if path in excluded_paths: 
-			return False
+    """class to manage API authentication"""
 
-	def authorization_header(self, request=None) -> str:
-		"""return None"""
-		if request is None:
-			return None
-		return request.headers.get("Authorization")
+    def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
+        """return False"""
+        if path is None or excluded_paths is None or len(excluded_paths) == 0:
+            return True
+        path = path.rstrip('/') + '/'
+        if path in excluded_paths:
+            return False
 
-	def current_user(self, request=None) -> TypeVar('User'):
-		"""return None"""
-		return None
+    def authorization_header(self, request=None) -> str:
+        """return None"""
+        if request is None:
+            return None
+        return request.headers.get("Authorization")
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """return None"""
+        return None
