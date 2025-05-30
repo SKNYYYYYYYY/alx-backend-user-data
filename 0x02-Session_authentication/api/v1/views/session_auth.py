@@ -18,7 +18,7 @@ def login():
         return {"error": "password missing"}, 400
     User.load_from_file()
     users = User.search({"email": email})
-    if users is None:
+    if not users:
         return {"error": "no user found for this email"}, 404
     for user in users:
         if not user.is_valid_password(password):
