@@ -3,7 +3,6 @@
 Authentication module
 """
 from typing import List, TypeVar
-from flask import request
 
 
 class Auth():
