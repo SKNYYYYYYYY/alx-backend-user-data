@@ -1,0 +1,1 @@
+curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=a3277176-7663-4667-8c40-71d26cdb7361"
