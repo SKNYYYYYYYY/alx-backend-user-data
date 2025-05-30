@@ -1,1 +1,1 @@
-curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=a3277176-7663-4667-8c40-71d26cdb7361"
+curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=fe3d2f81-ce45-43b4-991d-e28ed153b1be"
