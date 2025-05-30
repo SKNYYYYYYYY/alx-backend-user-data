@@ -6,8 +6,10 @@ if __name__ == "__main__":
     from api.v1.auth.auth import Auth
 
     a = Auth()
-    res = a.require_auth("/api/v1/users/", ["/api/v1/stats/", "/api/v1/status/"])
+    path = "/api/v1/uas"
+    paths_excluded = ["/api/v1/us*"]
+    res = a.require_auth(path, paths_excluded)
     if not res:
-        print("require_auth must return True when path is not in excluded_paths")
+        print("require_auth must return False: {} - {}".format(path, paths_excluded))
         exit(1)
     print("OK", end="")

@@ -43,7 +43,10 @@ class BasicAuth(Auth):
 
         if ':' not in decoded_base64_authorization_header:
             return None, None
-        email, password = decoded_base64_authorization_header.split(':')
+        try:
+            email, password = decoded_base64_authorization_header.split(':', 1)
+        except Exception as e:
+            print(f"Error occurhaks: {e}")
         return email, password
 
     def user_object_from_credentials(
