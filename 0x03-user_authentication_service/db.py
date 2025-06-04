@@ -61,4 +61,5 @@ class DB:
             except Exception:
                 raise ValueError
             setattr(user, key, val)
+        self.__session.commit()
         return None
