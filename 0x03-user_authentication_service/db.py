@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 """Database module
 """
-from requests import session
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
-
 
 from user import Base, User
 
@@ -51,3 +49,14 @@ class DB:
             if user.count() == 0:
                 raise NoResultFound
             return user.first()
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """update the user"""
+        user = DB.find_user_by(self, id=user_id)
+        for key, val in kwargs.items():
+            try:
+                getattr(user, key)
+            except Exception:
+                raise ValueError
+            setattr(user, key, val)
+        return None
