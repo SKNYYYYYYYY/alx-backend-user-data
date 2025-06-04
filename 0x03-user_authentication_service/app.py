@@ -10,14 +10,14 @@ app = Flask(__name__)
 AUTH = Auth()
 
 
-@app.get("/")
+@app.route("/", methods=["GET"])
 def home():
     """home endpoint"""
     msg = {"message": "Bienvenue"}
     return jsonify(msg)
 
 
-@app.post("/users")
+@app.route("/users", methods=["POST"])
 def users():
     """register new user"""
     email = request.form.get("email")
@@ -29,7 +29,7 @@ def users():
         return jsonify({"message": "email already registered"}), 400
 
 
-@app.post("/sessions")
+@app.route("/sessions", methods=["POST"])
 def login():
     """login"""
     email = request.form.get('email')
