@@ -12,9 +12,11 @@ def _hash_password(password: str) -> bytes:
     """uses bcrypt to hash a password"""
     return bcrypt.hashpw(bytes(password, 'UTF-8'), bcrypt.gensalt())
 
+
 def _generate_uuid() -> str:
-        """generate unique ID"""
-        return str(uuid.uuid4())
+    """generate unique ID"""
+    return str(uuid.uuid4())
+
 
 class Auth:
     """Auth class to interact with authentication database"""
