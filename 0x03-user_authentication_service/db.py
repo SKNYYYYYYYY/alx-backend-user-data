@@ -9,6 +9,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
 
 from user import Base, User
+import bcrypt
 
 
 class DB:
