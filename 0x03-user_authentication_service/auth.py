@@ -51,9 +51,8 @@ class Auth:
         """return session id"""
         try:
             user = self._db.find_user_by(email=email)
-            session_id = str(_generate_uuid())
-            user.session_id = str(session_id)
-            self._db._DB__session.commit()
+            session_id = _generate_uuid()
+            self._db.update_user(user.id, session_id=session_id)
             return session_id
         except Exception as e:
             return None
