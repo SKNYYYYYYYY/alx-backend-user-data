@@ -8,9 +8,6 @@ from user import User
 from sqlalchemy.orm.exc import NoResultFound
 
 
-def _hash_password(password: str) -> bytes:
-    """uses bcrypt to hash a password"""
-    return str(bcrypt.hashpw(bytes(password, 'UTF-8'), bcrypt.gensalt()))
 
 
 class Auth:
@@ -19,6 +16,10 @@ class Auth:
     def __init__(self):
         """constructor"""
         self._db = DB()
+
+    def _hash_password(password: str) -> bytes:
+        """uses bcrypt to hash a password"""
+        return str(bcrypt.hashpw(bytes(password, 'UTF-8'), bcrypt.gensalt()))
 
     def register_user(self, email: str, password: str) -> User:
         """register user in the db"""
