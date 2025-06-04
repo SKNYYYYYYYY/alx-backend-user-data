@@ -15,6 +15,7 @@ def _hash_password(password: str) -> bytes:
 
 class Auth:
     """Auth class to interact with authentication database"""
+
     def __init__(self):
         """constructor"""
         self._db = DB()
@@ -55,4 +56,3 @@ class Auth:
             return session_id
         except Exception as e:
             return None
-

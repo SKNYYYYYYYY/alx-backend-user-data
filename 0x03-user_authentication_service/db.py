@@ -15,6 +15,7 @@ import bcrypt
 class DB:
     """DB class
     """
+
     def __init__(self) -> None:
         """constructor"""
         self._engine = create_engine('sqlite:///a.db', echo=False)
