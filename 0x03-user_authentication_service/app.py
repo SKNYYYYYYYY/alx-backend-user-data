@@ -90,10 +90,9 @@ def update_password():
     reset_token = request.form.get("reset_token")
     new_pwd = request.form.get("new_password")
     try:
-        ret = AUTH.update_password(reset_token=reset_token, password=new_pwd)
-        if ret is None:
-            msg = {"email": email, "message": "Password updated"}
-            return jsonify(msg), 200
+        AUTH.update_password(reset_token=reset_token, password=new_pwd)
+        msg = {"email": email, "message": "Password updated"}
+        return jsonify(msg), 200
     except Exception as e:
         print("errr", e)
         response = make_response()
