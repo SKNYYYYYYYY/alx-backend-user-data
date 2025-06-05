@@ -78,6 +78,8 @@ class Auth:
 
     def get_reset_password_token (self, email: str) -> str:
         """gernerates a UUID as reset token"""
+        if not email or not isinstance(email, str) or "@" not in email:
+            raise ValueError("Invalid email format")
         try:
             user = self._db.find_user_by(email=email)
             reset_token = _generate_uuid()
