@@ -9,7 +9,6 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
 
 from user import Base, User
-import bcrypt
 
 
 class DB:
@@ -47,7 +46,9 @@ class DB:
                 getattr(User, key)
             except Exception:
                 raise InvalidRequestError
+
             user = self.__session.query(User).filter(getattr(User, key) == val)
+
             if user.count() == 0:
                 raise NoResultFound
             return user.first()
