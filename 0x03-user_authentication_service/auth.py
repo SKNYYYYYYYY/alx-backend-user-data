@@ -76,7 +76,7 @@ class Auth:
         except Exception:
             return None
 
-    def generate_reset_token(self, email: str) -> str:
+    def get_reset_password_token (self, email: str) -> str:
         """gernerates a UUID as reset token"""
         try:
             user = self._db.find_user_by(email=email)
