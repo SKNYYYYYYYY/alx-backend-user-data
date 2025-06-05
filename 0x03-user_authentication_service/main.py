@@ -5,8 +5,8 @@ Main file
 from auth import Auth
 from db import DB
 
-email = 'bob@bodsjhb.com'
-password = 'MyPwdOfsdBob'
+email = 'bob@bob.com'
+password = 'mySuperPwd'
 auth = Auth()
 db = DB()
 
