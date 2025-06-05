@@ -94,7 +94,6 @@ def update_password():
         msg = {"email": email, "message": "Password updated"}
         return jsonify(msg), 200
     except Exception as e:
-        print("errr", e)
         response = make_response()
         response.status_code = 403
         return response
