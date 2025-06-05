@@ -80,6 +80,8 @@ class Auth:
         """gernerates a UUID as reset token"""
         if not email or not isinstance(email, str) or "@" not in email:
             raise ValueError("Invalid email format")
+        if not email or '@' not in email or ' ' in email:
+            raise ValueError("Invalid email format")
         try:
             user = self._db.find_user_by(email=email)
             reset_token = _generate_uuid()
