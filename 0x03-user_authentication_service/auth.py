@@ -76,7 +76,7 @@ class Auth:
         except Exception:
             return None
 
-    def get_reset_password_token (self, email: str) -> str:
+    def get_reset_password_token(self, email: str) -> str:
         """gernerates a UUID as reset token"""
         if not email or not isinstance(email, str) or "@" not in email:
             raise ValueError("Invalid email format")
