@@ -3,11 +3,13 @@
 """
 from flask import Flask, jsonify, request, abort, make_response, redirect
 from auth import Auth
+from db import DB
 
 
 app = Flask(__name__)
 
 AUTH = Auth()
+mydb = DB()
 
 
 @app.route("/", methods=["GET"])
@@ -67,6 +69,19 @@ def profile():
         response = make_response()
         response.status_code = 403
         return response
+
+
+@app.route("/reset_password", methods=["POST"])
+def get_reset_password_token():
+    email = request.form.get("email")
+    try:
+        user = mydb.find_user_by(email=email)
+    except Exception:
+        response = make_response()
+        response.status_code = 403
+        return response
+    reset_token = AUTH.get_reset_password_token(email)
+    return jsonify({"email": email, "reset_token": reset_token})
 
 
 if __name__ == "__main__":
